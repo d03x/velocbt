@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .upload-container {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+      .upload-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      .file-input {
+        display: none;
+      }
+      .custom-file-label {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .custom-file-label:hover {
+        background-color: #0056b3;
+      }
+      .file-name {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+      }
+      .submit-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .submit-btn:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="upload-container">
+      <h2>Upload Your File</h2>
+      <form action="/api/upload" method="post" enctype="multipart/form-data">
+        <label for="file-upload" class="custom-file-label">Choose File</label>
+        <input
+          type="file"
+          id="file-upload"
+          name="file"
+          class="file-input"
+          onchange="showFileName()"
+        />
+        <div class="file-name" id="file-name">No file chosen</div>
+        <button type="submit" class="submit-btn">Upload</button>
+      </form>
+    </div>
+
+    <script>
+      function showFileName() {
+        const fileInput = document.getElementById("file-upload");
+        const fileName = document.getElementById("file-name");
+        fileName.textContent =
+          fileInput.files.length > 0
+            ? fileInput.files[0].name
+            : "No file chosen";
+      }
+    </script>
+  </body>
+</html>
